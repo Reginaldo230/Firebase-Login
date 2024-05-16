@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <!-- Link do CSS do Bootstrap -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Link para o modo dark do Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/darkly/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-light">
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-6">
+        <div class="card bg-secondary">
+          <div class="card-body">
+            <h3 class="card-title text-center">Login</h3>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Digite seu email">
+              </div>
+              <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
+              </div>
+              <div class="form-group">
+                <label for="number">Número</label>
+                <input type="number" class="form-control" id="numero" placeholder="Digite seu número">
+              </div>
+              <button class="btn btn-primary btn-block" id="entrar">Entrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts do Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";  
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBiQKOwregNaSN8D9bQmjQK6M-gmcxGPbI",
+    authDomain: "login-9bd7a.firebaseapp.com",
+    projectId: "login-9bd7a",
+    storageBucket: "login-9bd7a.appspot.com",
+    messagingSenderId: "526400567102",
+    appId: "1:526400567102:web:26a14c7dc4a47544439e6f"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  
+  document.getElementById("entrar").addEventListener("click", function() {
+    
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("senha").value;
+  const num = document.getElementById("numero").value
+    
+    createUserWithEmailAndPassword(auth, email, password, num)
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        // ...
+        alert("Conta criada com sucesso...")
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        alert("Cria a porra da conta bem...")
+      });
+      })
+  
+</script>
+</body>
+</html>
